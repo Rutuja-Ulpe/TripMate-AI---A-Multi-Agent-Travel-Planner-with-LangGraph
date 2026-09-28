@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>TripMate AI - Travel Planner</title>
+
+    <link rel="stylesheet"
+        href="/static/style.css">
+
+    <!-- Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+
+    <div class="page-bg">
+
+        <div class="gradient-circle circle-1"></div>
+
+        <div class="gradient-circle circle-2"></div>
+
+        <div class="gradient-circle circle-3"></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN CONTAINER
+    ====================================================== -->
+
+    <main class="app-container">
+
+
+        <!-- =================================================
+             HERO SECTION
+        ================================================== -->
+
+        <section class="hero-section">
+
+            <div class="badge">
+
+                ✈️ TripMate AI – A Multi-Agent Travel Planner
+                with LangGraph
+
+            </div>
+
+
+            <h1>
+
+                Plan Your Perfect Trip
+                <span>with AI</span>
+
+            </h1>
+
+
+            <p>
+
+                Search flights, discover hotels, and generate
+                a complete travel itinerary using a multi-agent
+                LangGraph system.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PLANNER CARD
+        ================================================== -->
+
+        <section class="planner-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Where do you want to go?
+                    </h2>
+
+
+                    <p>
+                        Example: Plan a complete 7 days Japan
+                        trip from Bangladesh under 2 lakhs.
+                    </p>
+
+                </div>
+
+
+                <div class="status">
+
+                    <span class="status-dot"></span>
+
+                    Online
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INPUT -->
+
+            <div class="planner-input">
+
+                <textarea
+                    id="userInput"
+                    placeholder="Plan a complete 7 days Japan trip including flights, hotels and sightseeing under 2 lakhs..."
+                ></textarea>
+
+
+                <button
+                    id="sendBtn"
+                    onclick="sendMessage()">
+
+                    <span id="btnText">
+                        Generate Plan
+                    </span>
+
+                    <span
+                        id="btnLoader"
+                        class="hidden">
+
+                        Generating...
+
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- QUICK PROMPTS -->
+
+            <div class="quick-prompts">
+
+                <button
+                    onclick="setPrompt('Plan a complete 7 days Japan trip from Bangladesh including flights, hotels and sightseeing under 2 lakhs.')">
+
+                    Japan Trip
+
+                </button>
+
+
+                <button
+                    onclick="setPrompt('Plan a 5 days Dubai trip from Dhaka with flights, hotels and sightseeing.')">
+
+                    Dubai Trip
+
+                </button>
+
+
+                <button
+                    onclick="setPrompt('Plan a 7 days Thailand trip from Bangladesh with flights, hotels and sightseeing.')">
+
+                    Thailand Trip
+
+                </button>
+
+
+                <button
+                    onclick="setPrompt('Give me all country flight info.')">
+
+                    Global Flights
+
+                </button>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="errorBox"
+                class="error-box hidden">
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LOADING
+        ================================================== -->
+
+        <div
+            id="loading"
+            class="loading hidden">
+
+            <div class="loader"></div>
+
+            <p>
+                Our AI travel agents are planning your trip...
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RESULT SECTION
+        ================================================== -->
+
+        <section
+            id="resultSection"
+            class="result-section hidden">
+
+
+            <!-- RESULT HEADER -->
+
+            <div class="result-header">
+
+                <div>
+
+                    <h2>
+                        Your AI Travel Plan
+                    </h2>
+
+                    <div
+                        id="threadInfo"
+                        class="thread-info">
+                    </div>
+
+                </div>
+
+
+                <div class="result-actions">
+
+                    <button
+                        class="copy-btn"
+                        onclick="copyResult()">
+
+                        Copy
+
+                    </button>
+
+
+                    <button
+                        class="download-btn"
+                        onclick="downloadPDF()">
+
+                        Download PDF
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PDF CONTENT -->
+
+            <div id="pdfContent">
+
+
+                <!-- RESULT BOX -->
+
+                <div
+                    id="resultBox"
+                    class="result-box">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer>
+
+            Built with FastAPI, LangGraph, Groq,
+            PostgreSQL, Tavily and AviationStack
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
